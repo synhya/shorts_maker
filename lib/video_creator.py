@@ -24,6 +24,9 @@ def create_slideshow_with_audio(title, content_texts, image_paths, output_filena
     tts.save("caption_audio.mp3")
     audio_clip = AudioFileClip("caption_audio.mp3").set_duration(slideshow.duration)
 
+    # 재생 속도 조정 (1.5배속 예시)
+    audio_clip = audio_clip.fx(vfx.speedx, 1.5)  # 원하는 배속 설정
+
     # 자막 텍스트 클립 생성
     txt_clip = TextClip(caption_text, fontsize=24, color='white', size=slideshow.size, method='caption').set_duration(slideshow.duration)
     txt_clip = txt_clip.set_position(("center", "bottom"))
