@@ -14,7 +14,7 @@ def login(username, password):
         print(f"Login failed: {e}")
 
 # 사용자 Reels를 다운로드하는 함수
-def download_user_reels(target_user, proxies=None):
+def download_user_reels(path, target_user, proxies=None):
     # 프로필 정보 로드
     try:
         profile = Profile.from_username(L.context, target_user)
@@ -26,7 +26,7 @@ def download_user_reels(target_user, proxies=None):
     for post in profile.get_posts():
         if post.is_video and post.typename == 'GraphVideo':
             print(f"Downloading Reel: {post.url}")
-            L.download_post(post, target=f"{target_user}_reels")
+            L.download_post(post, target=path)
     print(f"Downloaded all reels from {target_user}.")
 
 # 프록시를 사용하여 실시간 Reels 가져오기

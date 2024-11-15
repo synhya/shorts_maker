@@ -1,0 +1,5 @@
+# OAuth 클라이언트 비밀 파일
+client_secret.json
+
+# 폴더 내 모든 파일 무시
+vids/
