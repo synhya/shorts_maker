@@ -7,6 +7,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 from lib.upload_counter import get_next_counter
+from lib.utils.index import get_path
 
 # 필요한 권한 스코프
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
@@ -62,9 +63,10 @@ def upload_video(youtube, file_path, title, description):
             return
     print("업로드 완료:", response.get('id'))
 
-def upload_videos_from_folder(folder_path, user):
+def upload_videos_from_folder(folder_path):
     """폴더 내 모든 동영상 업로드"""
     youtube = authenticate_youtube()
+    folder_path = get_path(user, "user")
     for file_name in os.listdir(folder_path):
         if file_name.lower().endswith(('.mp4', '.avi', '.mov', '.mkv', '.flv', '.wmv')):
             file_path = os.path.join(folder_path, file_name)
